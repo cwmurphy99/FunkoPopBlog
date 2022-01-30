@@ -14,7 +14,7 @@ export default function ApplicationViews({ isLoggedIn }) {
                 <Route path="/" exact>
                     {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
                 </Route>
-                <Route path="/Tag" exact>
+                {/* <Route path="/Tag" exact>
                     <TagList />
                 </Route>
                 <Route path="/Tag/create">
@@ -58,12 +58,13 @@ export default function ApplicationViews({ isLoggedIn }) {
                 </Route>
                 <Route path="/category/delete/:categoryId(\d+)">
                     <DeleteCategory />
-                </Route>
-                <Route path="/login">
-                    <Login />
-                </Route>
+                </Route> 
                 <Route path="/userprofiles">
                     <UserProfiles />
+                </Route>
+                */}
+                <Route path="/login">
+                    <Login />
                 </Route>
                 <Route path="/register">
                     <Register />

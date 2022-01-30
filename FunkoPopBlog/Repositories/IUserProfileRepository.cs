@@ -1,4 +1,7 @@
-﻿namespace FunkoPopBlog.Repositories
+﻿using FunkoPopBlog.Models;
+using System.Collections.Generic;
+
+namespace FunkoPopBlog.Repositories
 {
     public interface IUserProfileRepository
 

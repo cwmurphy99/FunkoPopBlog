@@ -1,9 +1,10 @@
 import firebase from "firebase/app";
 import "firebase/auth";
-const _apiUrl = "/api/userprofile";
+const apiUrl = "/api/userprofile";
+
 const _doesUserExist = (firebaseUserId) => {
     return getToken().then((token) =>
-        fetch(`${_apiUrl}/DoesUserExist/${firebaseUserId}`, {
+        fetch(`${apiUrl}/DoesUserExist/${firebaseUserId}`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -12,7 +13,7 @@ const _doesUserExist = (firebaseUserId) => {
 };
 const _saveUser = (userProfile) => {
     return getToken().then((token) =>
-        fetch(_apiUrl, {
+        fetch(apiUrl, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -23,7 +24,7 @@ const _saveUser = (userProfile) => {
 };
 export const _getUserData = () => {
     return getToken().then((token) => {
-        return fetch(`${_apiUrl}`, {
+        return fetch(`${apiUrl}`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`

@@ -25,18 +25,12 @@ namespace FunkoPopBlog.Models
         [MaxLength(255)]
         public string Email { get; set; }
 
-        public DateTime CreateDateTime { get; set; }
+        public bool IsActive { get; set; }
 
         [DataType(DataType.Url)]
         [MaxLength(255)]
-        public string ImageLocation { get; set; }
+        public string Image { get; set; }
 
-        public string FullName
-        {
-            get
-            {
-                return $"{FirstName} {LastName}";
-            }
-        }
+        public string DisplayName { get; set; }
     }
 }

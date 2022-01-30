@@ -16,12 +16,9 @@ namespace FunkoPopBlog.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT up.Id, Up.FirebaseUserId, up.FirstName, up.LastName, up.DisplayName, 
-                               up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
-                               ut.Name AS UserTypeName
-                          FROM UserProfile up
-                               LEFT JOIN UserType ut on up.UserTypeId = ut.Id
-                         WHERE FirebaseUserId = @FirebaseuserId";
+                                        SELECT Id, FirebaseUserId, FirstName, LastName, DisplayName, Email, [Image], IsActive
+                                        FROM UserProfile
+                                        WHERE FirebaseUserId = @FirebaseuserId";
 
                     DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
 
@@ -38,14 +35,8 @@ namespace FunkoPopBlog.Repositories
                             LastName = DbUtils.GetString(reader, "LastName"),
                             DisplayName = DbUtils.GetString(reader, "DisplayName"),
                             Email = DbUtils.GetString(reader, "Email"),
-                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
-                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
-                            UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                            UserType = new UserType()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserTypeId"),
-                                Name = DbUtils.GetString(reader, "UserTypeName"),
-                            }
+                            Image = DbUtils.GetString(reader, "Image"),
+                            IsActive = DbUtils.GetBool(reader, "IsActive")
                         };
                     }
                     reader.Close();
@@ -61,19 +52,20 @@ namespace FunkoPopBlog.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO UserProfile (FirebaseUserId, FirstName, LastName, DisplayName, 
-                                                                 Email, CreateDateTime, ImageLocation, UserTypeId)
+                    cmd.CommandText = @"
+                                        INSERT INTO UserProfile (FirebaseUserId, FirstName, LastName, DisplayName, 
+                                        Email, Image, IsActive)
                                         OUTPUT INSERTED.ID
                                         VALUES (@FirebaseUserId, @FirstName, @LastName, @DisplayName, 
-                                                @Email, @CreateDateTime, @ImageLocation, @UserTypeId)";
+                                        @Email, @Image)";
+
                     DbUtils.AddParameter(cmd, "@FirebaseUserId", userProfile.FirebaseUserId);
                     DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
                     DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
                     DbUtils.AddParameter(cmd, "@DisplayName", userProfile.DisplayName);
                     DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
-                    DbUtils.AddParameter(cmd, "@CreateDateTime", userProfile.CreateDateTime);
-                    DbUtils.AddParameter(cmd, "@ImageLocation", userProfile.ImageLocation);
-                    DbUtils.AddParameter(cmd, "@UserTypeId", userProfile.UserTypeId);
+                    DbUtils.AddParameter(cmd, "@Image", userProfile.Image);
+                    DbUtils.AddParameter(cmd, "IsActive", true);
 
                     userProfile.Id = (int)cmd.ExecuteScalar();
                 }
@@ -87,12 +79,10 @@ namespace FunkoPopBlog.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT up.Id, Up.FirebaseUserId, up.FirstName, up.LastName, up.DisplayName, 
-                               up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
-                               ut.Name AS UserTypeName
-                          FROM UserProfile up
-                               LEFT JOIN UserType ut on up.UserTypeId = ut.Id
-                         ORDER BY UP.DisplayName ASC";
+                        SELECT Id, FirebaseUserId, FirstName, LastName, DisplayName, 
+                               Email, Image, IsActive
+                          FROM UserProfile
+                         ORDER BY DisplayName ASC";
                     List<UserProfile> list = new List<UserProfile>();
                     var reader = cmd.ExecuteReader();
                     while (reader.Read())
@@ -105,14 +95,8 @@ namespace FunkoPopBlog.Repositories
                             LastName = DbUtils.GetString(reader, "LastName"),
                             DisplayName = DbUtils.GetString(reader, "DisplayName"),
                             Email = DbUtils.GetString(reader, "Email"),
-                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
-                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
-                            UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                            UserType = new UserType()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserTypeId"),
-                                Name = DbUtils.GetString(reader, "UserTypeName"),
-                            }
+                            Image = DbUtils.GetString(reader, "Image"),
+                            IsActive = DbUtils.GetBool(reader, "IsActive"),
                         };
                         list.Add(userProfile);
                     }
@@ -122,19 +106,6 @@ namespace FunkoPopBlog.Repositories
             }
         }
 
-        /*
-        public UserProfile GetByFirebaseUserId(string firebaseUserId)
-        {
-            return _context.UserProfile
-                       .Include(up => up.UserType) 
-                       .FirstOrDefault(up => up.FirebaseUserId == firebaseUserId);
-        }
-
-        public void Add(UserProfile userProfile)
-        {
-            _context.Add(userProfile);
-            _context.SaveChanges();
-        }
-        */
+        
     }
 }

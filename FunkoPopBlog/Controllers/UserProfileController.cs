@@ -26,12 +26,15 @@ namespace FunkoPopBlog.Controllers
             var claim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
             return Ok(_userProfileRepository.GetByFirebaseUserId(claim));
         }
+
+
         [HttpGet("GetAllProfiles")]
         public IActionResult GetAllProfiles()
         {
             List<UserProfile> profiles = _userProfileRepository.GetAllProfiles();
             return Ok(profiles);
         }
+
 
         [HttpGet("DoesUserExist/{firebaseUserId}")]
         public IActionResult DoesUserExist(string firebaseUserId)
@@ -44,16 +47,17 @@ namespace FunkoPopBlog.Controllers
             return Ok();
         }
 
+
         [HttpPost]
         public IActionResult Post(UserProfile userProfile)
         {
-            userProfile.CreateDateTime = DateTime.Now;
-            userProfile.UserTypeId = UserType.AUTHOR_ID;
             _userProfileRepository.Add(userProfile);
             return CreatedAtAction(
                 nameof(GetUserProfile),
                 new { firebaseUserId = userProfile.FirebaseUserId },
                 userProfile);
         }
+
+
     }
 }
