@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using FunkoPopBlog.Models;
 using FunkoPopBlog.Utils;
+using System;
 
 namespace FunkoPopBlog.Repositories
 {
@@ -54,18 +55,28 @@ namespace FunkoPopBlog.Repositories
                 {
                     cmd.CommandText = @"
                                         INSERT INTO UserProfile (FirebaseUserId, FirstName, LastName, DisplayName, 
-                                        Email, Image, IsActive)
+                                        Email, [Image], IsActive)
                                         OUTPUT INSERTED.ID
                                         VALUES (@FirebaseUserId, @FirstName, @LastName, @DisplayName, 
-                                        @Email, @Image)";
+                                        @Email, @Image, @IsActive)";
 
                     DbUtils.AddParameter(cmd, "@FirebaseUserId", userProfile.FirebaseUserId);
                     DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
                     DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
                     DbUtils.AddParameter(cmd, "@DisplayName", userProfile.DisplayName);
                     DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
-                    DbUtils.AddParameter(cmd, "@Image", userProfile.Image);
-                    DbUtils.AddParameter(cmd, "IsActive", true);
+                    
+                    if(string.IsNullOrWhiteSpace(userProfile.Image))
+                    {
+                        cmd.Parameters.AddWithValue("@Image", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@Image", userProfile.Image);
+                    }
+                    
+                    
+                    DbUtils.AddParameter(cmd, "@IsActive", true);
 
                     userProfile.Id = (int)cmd.ExecuteScalar();
                 }
