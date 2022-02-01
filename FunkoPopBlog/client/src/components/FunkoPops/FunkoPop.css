@@ -1,0 +1,13 @@
+.funkoCard {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding-bottom: 10px;
+    align-items: center;
+}
+
+.funkoPopList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

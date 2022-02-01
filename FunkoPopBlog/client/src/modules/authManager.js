@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
-const apiUrl = "/api/userprofile";
+const apiUrl = "/api/UserProfile";
 
 const _doesUserExist = (firebaseUserId) => {
     return getToken().then((token) =>
