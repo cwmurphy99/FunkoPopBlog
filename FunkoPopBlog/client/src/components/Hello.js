@@ -1,10 +1,9 @@
 import React from "react";
 import logo from '../components/Images/FunkoLogo.jpg';
 
-console.log(logo);
-
 function Hello() {
     return (
+
         <img src={logo} alt="FunkoPop!"
             span style={{
                 position: "absolute",
@@ -13,6 +12,8 @@ function Hello() {
                 top: "40%",
                 marginTop: "-0.5rem",
             }}></img>
+
+
     )
 }
 

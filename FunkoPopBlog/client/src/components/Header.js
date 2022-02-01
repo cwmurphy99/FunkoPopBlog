@@ -17,13 +17,14 @@ import { logout, _getUserData } from '../modules/authManager';
 
 export default function Header({ isLoggedIn }) {
     const [isOpen, setIsOpen] = useState(false);
-    const [isActive, setIsActive] = useState("");
+    const [isUserActive, setIsUserActive] = useState("");
     const toggle = () => setIsOpen(!isOpen);
     useEffect(() => {
         if (isLoggedIn) {
-            _getUserData().then(res => setIsActive(res.userType.name))
+            _getUserData().then(res => setIsUserActive(res.isActive))
         }
     }, [isLoggedIn])
+
 
     return (
 
@@ -35,7 +36,7 @@ export default function Header({ isLoggedIn }) {
 
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
-                        { /* When isLoggedIn === true, we will render the Home link */}
+                        { /* When isLoggedIn === true, we will render the Products link */}
                         {isLoggedIn &&
                             <NavItem>
                                 <NavLink tag={RRNavLink} to="/Products">Products</NavLink>

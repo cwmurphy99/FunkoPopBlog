@@ -4,7 +4,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Hello from "./Hello";
 import { UserProfiles } from "./userProfile/UserProfiles";
-
+import FunkoPopList from "./FunkoPops/FunkoPopList";
 
 export default function ApplicationViews({ isLoggedIn }) {
 
@@ -14,57 +14,12 @@ export default function ApplicationViews({ isLoggedIn }) {
                 <Route path="/" exact>
                     {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
                 </Route>
-                {/* <Route path="/Tag" exact>
-                    <TagList />
+                <Route exact path="/Products" >
+                    {isLoggedIn ? <FunkoPopList /> : <Redirect to="/login" />}
                 </Route>
-                <Route path="/Tag/create">
-                    <AddTagForm />
-                </Route>
-                <Route path="/Tag/:tagId(\d+)/edit">
-                    <EditTagForm />
-                </Route>
-                <Route path="/Tag/delete/:tagId(\d+)">
-                    <DeleteTagForm />
-                </Route>
-                <Route exact path="/myposts" >
-                    {isLoggedIn ? <PostList allPosts={false} /> : <Redirect to="/login" />}
-                </Route>
-                <Route exact path="/post" >
-                    {isLoggedIn ? <PostList allPosts={true} /> : <Redirect to="/login" />}
-                </Route>
-                <Route path="/post/details/:id">
-                    <PostDetails />
-                </Route>
-                <Route path="/comments/:id">
-                    <CommentsList />
-                </Route>
-                <Route path="/post/create">
-                    <PostForm />
-                </Route>
-                <Route path="/post/:postId(\d+)/edit">
-                    <EditPostForm />
-                </Route>
-                <Route path="/post/delete/:postId(\d+)">
-                    <DeletePostForm />
-                </Route>
-                <Route path="/category" exact>
-                    <CategoryList />
-                </Route>
-                <Route path="/category/create/">
-                    <AddCategory />
-                </Route>
-                <Route path="/category/:categoryId(\d+)/edit">
-                    <EditCategory />
-                </Route>
-                <Route path="/category/delete/:categoryId(\d+)">
-                    <DeleteCategory />
-                </Route> 
-                <Route path="/userprofiles">
-                    <UserProfiles />
-                </Route>
-                */}
-                <Route path="/login">
-                    <Login />
+
+                <Route exact path="/login">
+                    {isLoggedIn ? <Redirect to="/" /> : <Login />}
                 </Route>
                 <Route path="/register">
                     <Register />

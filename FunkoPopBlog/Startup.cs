@@ -24,9 +24,8 @@ namespace FunkoPopBlog
         {
 
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
-            //services.AddTransient<IPostRepository, PostRepository>();
-            //services.AddTransient<ICommentRepository, CommentRepository>();
-            
+            services.AddTransient<IFunkoPopRepository, FunkoPopRepository>();
+
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
             services
