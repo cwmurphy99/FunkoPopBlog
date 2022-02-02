@@ -6,5 +6,6 @@ namespace FunkoPopBlog.Repositories
     public interface IFunkoPopRepository
     {
         List<FunkoPop> GetAllFunko();
+        FunkoPop GetFunkoPopById(int id);
     }
 }

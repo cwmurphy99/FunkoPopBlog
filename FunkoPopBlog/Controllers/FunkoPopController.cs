@@ -28,6 +28,16 @@ namespace FunkoPopBlog.Controllers
             return Ok(_funkoRepo.GetAllFunko());
         }
 
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var funko = _funkoRepo.GetFunkoPopById(id);
+            if(funko == null)
+            {
+                return NotFound();
+            }
+            return Ok(funko);
+        }
 
 
 

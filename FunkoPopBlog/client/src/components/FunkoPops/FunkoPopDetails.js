@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { Card, CardHeader, CardBody, CardFooter, CardImg } from "reactstrap";
-import { getFunkoById } from "../../modules/FunkoPopManager";
+import { getFunkoPopsById } from "../../modules/FunkoPopManager";
 
 export const FunkoPopDetails = () => {
     const [funko, setFunko] = useState();
@@ -9,12 +9,13 @@ export const FunkoPopDetails = () => {
     const history = useHistory();
 
     useEffect(() => {
-        getFunkoById(id).then(setFunko);
+        getFunkoPopsById(id).then(setFunko);
     }, [id])
 
     if (!funko) {
         return null
     }
+
 
     return (
         <div className="funkoDetailsCard">
@@ -24,10 +25,10 @@ export const FunkoPopDetails = () => {
                     <strong>{funko.title}</strong>
                 </CardHeader>
                 <CardImg src={funko.image} />
-
                 {funko.series ?
                     <CardFooter>
-                        <strong>Series:</strong> {funko.series}
+                        <strong>Series:</strong>
+                        {funko.series.map(p => <p key={p.id}>{p.name} </p>)}
                     </CardFooter>
                     : null}
             </Card>

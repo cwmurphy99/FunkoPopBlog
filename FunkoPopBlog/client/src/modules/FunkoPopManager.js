@@ -20,7 +20,7 @@ export const getFunkoPops = () => {
 }
 
 
-export const getFunkoById = (id) => {
+export const getFunkoPopsById = (id) => {
     return getToken().then(token => {
         return fetch(`${apiUrl}/${id}`, {
             method: "GET",

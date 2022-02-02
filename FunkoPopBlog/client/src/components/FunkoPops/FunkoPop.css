@@ -11,3 +11,11 @@
     flex-direction: column;
     width: 100%;
 }
+
+.funkoDetailsCard {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding-bottom: 10px;
+    align-items: center;
+}
