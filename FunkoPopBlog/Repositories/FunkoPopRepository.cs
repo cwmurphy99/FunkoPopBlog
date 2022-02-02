@@ -21,8 +21,9 @@ namespace FunkoPopBlog.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                        select * from FunkoPop
-                                        tablesample(15 rows)";
+                                        select top 15 * 
+                                        from FunkoPop
+                                        TABLESAMPLE(1000 rows)";
 
                     var reader = cmd.ExecuteReader();
 
