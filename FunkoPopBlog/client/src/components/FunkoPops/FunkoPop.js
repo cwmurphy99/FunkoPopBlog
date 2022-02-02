@@ -6,8 +6,6 @@ import "./FunkoPop.css";
 export default function FunkoPop({ funkoPop }) {
     const history = useHistory();
 
-    console.log(funkoPop.image);
-
     return (
         <div className="funkoCard">
             <Card>
@@ -19,8 +17,8 @@ export default function FunkoPop({ funkoPop }) {
                         <img src={funkoPop.image} style={{ height: "300px", width: "250px" }}></img>
                     </CardBody>
                 </div>
+                <Button onClick={() => history.push(`/Products/Details/${funkoPop.id}`)}> Pop! Details </Button>
             </Card>
-            <Button onClick={() => history.push('/funkoPop/details/${funkoPop.id}')}> Pop! Details </Button>
         </div>
     )
 }
