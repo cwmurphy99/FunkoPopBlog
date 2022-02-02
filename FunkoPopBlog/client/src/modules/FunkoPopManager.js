@@ -7,6 +7,9 @@ export const getFunkoPops = () => {
         return fetch(apiUrl, {
             method: "GET",
             headers: {
+                pragma: "no-cache",
+                "cache-control": "no-cache",
+                "cache-control": "no-store",
                 Authorization: `Bearer ${token}`
             }
         }).then(resp => {
@@ -25,6 +28,9 @@ export const getFunkoPopsById = (id) => {
         return fetch(`${apiUrl}/${id}`, {
             method: "GET",
             headers: {
+                pragma: "no-cache",
+                "cache-control": "no-cache",
+                "cache-control": "no-store",
                 Authorization: `Bearer ${token}`
             }
         }).then(res => res.json())

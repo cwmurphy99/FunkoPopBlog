@@ -25,7 +25,8 @@ namespace FunkoPopBlog.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_funkoRepo.GetAllFunko());
+            var pop = _funkoRepo.GetAllFunko();
+            return Ok(pop);
         }
 
         [HttpGet("{id}")]

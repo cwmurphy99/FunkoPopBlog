@@ -5,7 +5,7 @@ function Hello() {
     return (
 
         <img src={logo} alt="FunkoPop!"
-            span style={{
+            style={{
                 position: "absolute",
                 left: 500,
                 right: 500,
@@ -18,18 +18,3 @@ function Hello() {
 }
 
 export default Hello;
-
-// export default function Hello() {
-//     return (
-//         <span style={{
-//             position: "fixed",
-//             left: 0,
-//             right: 0,
-//             top: "50%",
-//             marginTop: "-0.5rem",
-//             textAlign: "center",
-//         }}>hello</span>
-//     );
-// }
-
-
