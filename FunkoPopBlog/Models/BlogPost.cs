@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FunkoPopBlog.Models
 {
-    public class Post
+    public class BlogPost
     {
         public int Id { get; set; }
         
