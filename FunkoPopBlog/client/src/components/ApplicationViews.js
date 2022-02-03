@@ -6,6 +6,7 @@ import Hello from "./Hello";
 import { UserProfiles } from "./userProfile/UserProfiles";
 import FunkoPopList from "./FunkoPops/FunkoPopList";
 import { FunkoPopDetails } from "./FunkoPops/FunkoPopDetails";
+import BlogPostList from "./BlogPosts/BlogPostList";
 
 export default function ApplicationViews({ isLoggedIn }) {
 
@@ -21,6 +22,12 @@ export default function ApplicationViews({ isLoggedIn }) {
                 <Route exact path="/Products/Details/:id">
                     {isLoggedIn ? <FunkoPopDetails /> : <Redirect to="/login" />}
                 </Route>
+                <Route exact path="/BlogPost" >
+                    {isLoggedIn ? <BlogPostList allBlogPosts={true} /> : <Redirect to="/login" />}
+                </Route>
+                {/* <Route path="/BlogPost/details/:id">
+                    <BlogPostDetails />
+                </Route> */}
 
                 <Route exact path="/login">
                     {isLoggedIn ? <Redirect to="/" /> : <Login />}
