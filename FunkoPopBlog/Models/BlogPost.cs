@@ -24,8 +24,5 @@ namespace FunkoPopBlog.Models
 
         public UserProfile UserProfile { get; set; }
 
-        [DisplayName("FunkoPop!")]
-        public int FunkoPopId { get; set; }
-        public FunkoPop FunkoPop { get; set; }
     }
 }

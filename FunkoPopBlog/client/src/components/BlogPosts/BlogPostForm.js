@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { addPost } from "../../modules/postManager";
+import { addBlogPost } from "../../modules/blogPostManager";
 import { Button, Form, Label, Input, FormGroup } from "reactstrap";
+import { isCursorAtEnd } from "@testing-library/user-event/dist/utils";
 
 
-const PostForm = () => {
+const BlogPostForm = () => {
     //const [state, setState] = useState({});
 
     const [blogPost, setBlogPost] = useState({
@@ -12,7 +13,6 @@ const PostForm = () => {
         content: "",
         publishDateTime: ""
     });
-
 
     const history = useHistory();
 
@@ -28,9 +28,22 @@ const PostForm = () => {
 
     const handleClickSavePost = (event) => {
         event.preventDefault()
-        addPost(blogPost)
+        addBlogPost(blogPost)
             .then(() => history.push("/blogPost"))
     }
+
+
+    var myDate, day, month, year, today;
+    myDate = new Date();
+    day = myDate.getDate();
+    if (day < 10)
+        day = "0" + day;
+    month = myDate.getMonth() + 1;
+    if (month < 10)
+        month = "0" + month;
+    year = myDate.getFullYear();
+    today = year + "-" + month + "-" + day;
+
 
 
 
@@ -48,8 +61,8 @@ const PostForm = () => {
             </FormGroup>
 
             <FormGroup>
-                <Label htmlFor="publishDateTime">Published Date</Label>
-                <Input type="datetime-local" id="publishDateTime" onChange={handleControlledInputChange} value={blogPost.publishDateTime} />
+                <Label htmlFor="publishDateTime">Blog Post Date</Label>
+                <Input type="date" id="today" name="dateRequired" onChange={handleControlledInputChange} required readOnly value={today} />
             </FormGroup>
             <Button className="btn btn-primary" onClick={handleClickSavePost}>Save post</Button>
 
@@ -59,4 +72,4 @@ const PostForm = () => {
     )
 };
 
-export default PostForm;
+export default BlogPostForm;

@@ -19,10 +19,14 @@ namespace FunkoPopBlog.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                        SELECT *
-                                        FROM BlogPost
-                                        WHERE CreateDateTime < SYSDATETIME()
-                                        ORDER BY CreateDateTime DESC";
+                                        SELECT bp.*,
+                                        u.FirstName, 
+                                        u.LastName, u.DisplayName, 
+                                        u.Email
+                                        FROM BlogPost bp
+                                        LEFT JOIN 
+                                        UserProfile u ON bp.UserProfileId = u.id
+                                        ORDER BY bp.CreateDateTime";
 
                     var reader = cmd.ExecuteReader();
 

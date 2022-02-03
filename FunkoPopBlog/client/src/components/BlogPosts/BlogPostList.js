@@ -3,7 +3,7 @@ import BlogPost from "./BlogPost";
 import { getBlogPosts } from "../../modules/blogPostManager";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-export default function BlogPostList({ allPosts }) {
+export default function BlogPostList() {
     const [blogPosts, setBlogPosts] = useState([])
 
     const history = useHistory();
@@ -14,7 +14,7 @@ export default function BlogPostList({ allPosts }) {
 
     return (
         <section className="blogPostList">
-            <h1>All Posts</h1>
+            <h1>Funko Forum</h1>
             <button type="button"
                 className="button"
                 onClick={() => { history.push("/BlogPost/create") }}>

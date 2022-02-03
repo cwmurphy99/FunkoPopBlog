@@ -7,6 +7,7 @@ import { UserProfiles } from "./userProfile/UserProfiles";
 import FunkoPopList from "./FunkoPops/FunkoPopList";
 import { FunkoPopDetails } from "./FunkoPops/FunkoPopDetails";
 import BlogPostList from "./BlogPosts/BlogPostList";
+import BlogPostForm from "./BlogPosts/BlogPostForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
 
@@ -23,16 +24,19 @@ export default function ApplicationViews({ isLoggedIn }) {
                     {isLoggedIn ? <FunkoPopDetails /> : <Redirect to="/login" />}
                 </Route>
                 <Route exact path="/BlogPost" >
-                    {isLoggedIn ? <BlogPostList allBlogPosts={true} /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <BlogPostList /> : <Redirect to="/login" />}
                 </Route>
                 {/* <Route path="/BlogPost/details/:id">
                     <BlogPostDetails />
                 </Route> */}
+                <Route exact path="/BlogPost/Create">
+                    <BlogPostForm />
+                </Route>
 
-                <Route exact path="/login">
+                <Route exact path="/Login">
                     {isLoggedIn ? <Redirect to="/" /> : <Login />}
                 </Route>
-                <Route path="/register">
+                <Route path="/Register">
                     <Register />
                 </Route>
             </Switch>
