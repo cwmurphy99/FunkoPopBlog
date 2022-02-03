@@ -8,6 +8,7 @@ import FunkoPopList from "./FunkoPops/FunkoPopList";
 import { FunkoPopDetails } from "./FunkoPops/FunkoPopDetails";
 import BlogPostList from "./BlogPosts/BlogPostList";
 import BlogPostForm from "./BlogPosts/BlogPostForm";
+import { EditBlogPostForm } from "./BlogPosts/EditBlogPostForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
 
@@ -31,6 +32,9 @@ export default function ApplicationViews({ isLoggedIn }) {
                 </Route> */}
                 <Route exact path="/BlogPost/Create">
                     <BlogPostForm />
+                </Route>
+                <Route path="/BlogPost/:blogPostId(\d+)/edit">
+                    <EditBlogPostForm />
                 </Route>
 
                 <Route exact path="/Login">
