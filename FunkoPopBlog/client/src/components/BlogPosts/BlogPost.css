@@ -3,3 +3,10 @@
     padding-bottom: 10px;
     padding-top: 10px;
 }
+
+.editBlogButton {
+    margin-right: 5px;
+}
+.deleteBlogButton {
+    margin-right: 5px;
+}
