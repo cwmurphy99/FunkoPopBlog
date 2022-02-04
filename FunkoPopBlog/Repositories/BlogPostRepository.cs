@@ -53,10 +53,9 @@ namespace FunkoPopBlog.Repositories
                 {
                     cmd.CommandText = @"
                                         SELECT bp.Id, bp.Title, bp.Content,
-                                        bp.CreateDateTime,
-                                        bp.CategoryId, bp.UserProfileId,
+                                        bp.CreateDateTime, bp.UserProfileId,
                                         u.FirstName, u.LastName, u.DisplayName, 
-                                        u.Email, u.CreateDateTime, u.Image AS AvatarImage
+                                        u.Email
                                         FROM BlogPost bp
                                         LEFT JOIN UserProfile u ON bp.UserProfileId = u.id
                                         WHERE bp.CreateDateTime < SYSDATETIME() AND bp.id = @id";
