@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { getBlogPostById } from "../../modules/blogPostManager";
 import { Card, CardHeader, CardBody, CardFooter } from "reactstrap";
 
+
 export const BlogPostDetails = () => {
     const [blogPost, setBlogPost] = useState();
     const { id } = useParams();

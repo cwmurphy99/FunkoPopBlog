@@ -165,10 +165,7 @@ namespace FunkoPopBlog.Repositories
                                         UPDATE BlogPost
                                         SET 
                                         Title = @title,
-                                        Content = @content,
-                                        ImageLocation = @imageLocation,
-                                        CreateDateTime = @publishDateTime,
-                                        CategoryId = @categoryId
+                                        Content = @content
                                         WHERE Id = @id";
 
                     cmd.Parameters.AddWithValue("@title", blogPost.Title);
