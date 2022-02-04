@@ -34,8 +34,8 @@ export const BlogPostDetails = () => {
                     <br>
                     </br>
                     Author: {blogPost.userProfile.displayName}<br></br><br></br>
-                    <button className="editBlogButton" type="button" onClick={() => history.push(`/BlogPost/${blogPost.id}/edit`)}>Edit</button>
-                    <button className="deleteBlogButton" type="button" onClick={() => { history.push(`/BlogPost/delete/${blogPost.id}`) }}>Delete</button>
+                    <button className="button" type="button" onClick={() => history.push(`/BlogPost/${blogPost.id}/edit`)}>Edit</button>
+                    <button className="button" type="button" onClick={() => { history.push(`/BlogPost/delete/${blogPost.id}`) }}>Delete</button>
                 </CardFooter>
                 <button onClick={() => history.push(`/Comments/${blogPost.id}`)}>View Comments</button>
             </Card>

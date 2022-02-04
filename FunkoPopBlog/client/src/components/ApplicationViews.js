@@ -10,6 +10,7 @@ import BlogPostList from "./BlogPosts/BlogPostList";
 import BlogPostForm from "./BlogPosts/BlogPostForm";
 import { EditBlogPostForm } from "./BlogPosts/EditBlogPostForm";
 import { BlogPostDetails } from "./BlogPosts/BlogPostDetails";
+import DeleteBlogPostForm from "./BlogPosts/DeleteBlogPost";
 
 export default function ApplicationViews({ isLoggedIn }) {
 
@@ -36,6 +37,9 @@ export default function ApplicationViews({ isLoggedIn }) {
                 </Route>
                 <Route path="/BlogPost/:blogPostId(\d+)/edit">
                     {isLoggedIn ? <EditBlogPostForm /> : <Redirect to="/login" />}
+                </Route>
+                <Route path="/BlogPost/Delete/:blogPostId(\d+)">
+                    <DeleteBlogPostForm />
                 </Route>
 
                 <Route exact path="/Login">
