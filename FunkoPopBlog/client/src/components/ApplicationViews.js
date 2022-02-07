@@ -11,6 +11,9 @@ import BlogPostForm from "./BlogPosts/BlogPostForm";
 import { EditBlogPostForm } from "./BlogPosts/EditBlogPostForm";
 import { BlogPostDetails } from "./BlogPosts/BlogPostDetails";
 import DeleteBlogPostForm from "./BlogPosts/DeleteBlogPost";
+import AddComment from "./Comments/AddComment";
+import { CommentsList } from "./Comments/CommentsList";
+
 
 export default function ApplicationViews({ isLoggedIn }) {
 
@@ -20,12 +23,16 @@ export default function ApplicationViews({ isLoggedIn }) {
                 <Route path="/" exact>
                     {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
                 </Route>
+
+
                 <Route exact path="/Products" >
                     {isLoggedIn ? <FunkoPopList /> : <Redirect to="/login" />}
                 </Route>
                 <Route exact path="/Products/Details/:id">
                     {isLoggedIn ? <FunkoPopDetails /> : <Redirect to="/login" />}
                 </Route>
+
+
                 <Route exact path="/BlogPost" >
                     {isLoggedIn ? <BlogPostList /> : <Redirect to="/login" />}
                 </Route>
@@ -41,6 +48,22 @@ export default function ApplicationViews({ isLoggedIn }) {
                 <Route path="/BlogPost/Delete/:blogPostId(\d+)">
                     <DeleteBlogPostForm />
                 </Route>
+
+                <Route path="/Comments/add/:id">
+                    <AddComment />
+                </Route>
+                <Route path="/Comments/:id">
+                    <CommentsList />
+                </Route>
+                {/* <Route path="/deleteComment/:id">
+                    <DeleteComment />
+                </Route>
+                <Route path="/editComment/:id">
+                    <EditComment />
+                </Route> */}
+
+
+
 
                 <Route exact path="/Login">
                     {isLoggedIn ? <Redirect to="/" /> : <Login />}
