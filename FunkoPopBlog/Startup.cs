@@ -26,6 +26,8 @@ namespace FunkoPopBlog
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<IFunkoPopRepository, FunkoPopRepository>();
             services.AddTransient<IBlogPostRepository, BlogPostRepository>();
+            services.AddTransient<ICommentRepository, CommentRepository>();
+            
 
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
