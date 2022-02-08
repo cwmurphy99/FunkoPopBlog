@@ -67,9 +67,10 @@ namespace FunkoPopBlog.Controllers
 
         // DELETE api/<CommentController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public NoContentResult Delete(int id)
         {
-            throw new System.NotImplementedException();
+            _commentRepository.DeleteComment(id);
+            return NoContent();
         }
 
 

@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using FunkoPopBlog.Models;
 using FunkoPopBlog.Utils;
+using FunkoPopBlog.Repositories;
 
 namespace FunkoPopBlog.Repositories
 {
@@ -145,9 +146,22 @@ namespace FunkoPopBlog.Repositories
 
 
 
-        public void DeleteComment(int commentId)
+        public void DeleteComment(int id)
         {
-            throw new System.NotImplementedException();
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        DELETE FROM COMMENT 
+                                        WHERE id = @id";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
 
