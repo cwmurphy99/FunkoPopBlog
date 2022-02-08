@@ -7,5 +7,6 @@ namespace FunkoPopBlog.Repositories
     {
         List<FunkoPop> GetAllFunko();
         FunkoPop GetFunkoPopById(int id);
+        FunkoPop GetFunkoPopById(string funkoPopId);
     }
 }

@@ -27,6 +27,7 @@ namespace FunkoPopBlog
             services.AddTransient<IFunkoPopRepository, FunkoPopRepository>();
             services.AddTransient<IBlogPostRepository, BlogPostRepository>();
             services.AddTransient<ICommentRepository, CommentRepository>();
+            services.AddTransient<IUserProfileFunkoPopRepository, UserProfileFunkoPopRepository>();
             
 
 

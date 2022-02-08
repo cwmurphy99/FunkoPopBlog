@@ -64,3 +64,23 @@ export const updateComment = (comment) => {
         });
     })
 }
+
+export const deleteComment = (id) => {
+    return getToken().then(token => {
+        return fetch(`${apiUrl}/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(id)
+        }).then((res) => {
+            if (res.ok) {
+                return
+            }
+            else {
+                throw new Error("An unknown error occurred while trying to delete comment");
+            }
+        });
+    });
+};
