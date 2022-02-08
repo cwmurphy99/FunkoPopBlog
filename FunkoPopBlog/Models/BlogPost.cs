@@ -23,6 +23,7 @@ namespace FunkoPopBlog.Models
         public int UserProfileId { get; set; }
 
         public UserProfile UserProfile { get; set; }
+        public int? FunkoPopId { get; set; }
 
     }
 }

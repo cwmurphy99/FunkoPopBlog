@@ -46,7 +46,17 @@ namespace FunkoPopBlog.Controllers
             return NoContent();
 
         }
-       
+
+
+        // DELETE api/<CommentController>/5
+        [HttpDelete("{id}")]
+        public NoContentResult Delete(int id)
+        {
+            var userProfileId = GetCurrentUserProfile().Id;
+            _userProfileFunkoPopRepository.DeleteFavorite(id, userProfileId);
+            return NoContent();
+
+        }
 
 
 

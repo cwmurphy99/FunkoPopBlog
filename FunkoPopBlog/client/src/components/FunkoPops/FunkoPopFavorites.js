@@ -3,18 +3,25 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Button, Card, CardBody, CardHeader } from "reactstrap";
 import { addMyFavorite } from "../../modules/FunkoPopManager";
 import { removeMyFavorite } from "../../modules/FunkoPopManager";
+import { getMyCollection } from "../../modules/FunkoPopManager";
 import "./FunkoPop.css";
 
-export default function FunkoPop({ funkoPop }) {
+export default function FunkoPopFavorites({ funkoPop, setFunkoPops }) {
     const history = useHistory();
 
 
-    const handleAddFavorite = (event) => {
+
+
+    const handleRemoveFavorite = (event) => {
         event.preventDefault();
-        addMyFavorite(funkoPop.id).then(alert("Added to Collection"));
+        removeMyFavorite(funkoPop.id).then(() => {
+
+            getMyCollection().then((pops) => {
+                setFunkoPops(pops)
+                alert("Removed from Collection")
+            });
+        });
     };
-
-
 
     return (
         <div className="funkoCard">
@@ -29,7 +36,7 @@ export default function FunkoPop({ funkoPop }) {
                 </div>
                 <Button onClick={() => history.push(`/Products/Details/${funkoPop.id}`)}> Pop! Details </Button>
                 <div>
-                    <Button onClick={handleAddFavorite}> Add to Collection </Button>
+                    <Button onClick={handleRemoveFavorite}> Remove from Collection </Button>
                 </div>
             </Card>
         </div>

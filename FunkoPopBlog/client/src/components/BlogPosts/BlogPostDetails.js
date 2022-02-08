@@ -27,7 +27,8 @@ export const BlogPostDetails = () => {
                     <strong>Title: {blogPost.title}</strong><br></br><br></br>
                 </CardHeader>
                 <CardBody>
-                    {blogPost.content}
+                    {blogPost.content}<br></br>
+                    FunkoPop! {blogPost.favPop}
                 </CardBody>
                 <CardFooter>
                     Published Date: {blogPost.createDateTime.slice(0, 10)}
@@ -39,7 +40,6 @@ export const BlogPostDetails = () => {
                     <button className="button" onClick={() => history.push(`/comments/${blogPost.id}`)}>View Comments</button>
                     <button className="button" onClick={() => history.push(`/BlogPost`)}>Return to Forum</button>
                 </CardFooter>
-                {/* <button onClick={() => history.push(`/Comments/${blogPost.id}`)}>View Comments</button> */}
             </Card>
         </div >
     )

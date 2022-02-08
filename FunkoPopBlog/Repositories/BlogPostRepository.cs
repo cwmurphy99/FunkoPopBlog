@@ -53,7 +53,7 @@ namespace FunkoPopBlog.Repositories
                 {
                     cmd.CommandText = @"
                                         SELECT bp.Id, bp.Title, bp.Content,
-                                        bp.CreateDateTime, bp.UserProfileId,
+                                        bp.CreateDateTime, bp.UserProfileId, bp.FunkoPopId,
                                         u.FirstName, u.LastName, u.DisplayName, 
                                         u.Email
                                         FROM BlogPost bp
@@ -86,7 +86,7 @@ namespace FunkoPopBlog.Repositories
                 {
                     cmd.CommandText = @"
                                         SELECT bp.Id, bp.Title, bp.Content,
-                                        bp.CreateDateTime, bp.CreateDateTime,
+                                        bp.CreateDateTime, bp.CreateDateTime, bp.FunkoPopId,
                                         bp.UserProfileId,
                                         u.FirstName, u.LastName, u.DisplayName, 
                                         u.Email, u.Image
@@ -121,11 +121,12 @@ namespace FunkoPopBlog.Repositories
                 {
                     cmd.CommandText = @"
                                         INSERT INTO BlogPost (
-                                        Title, Content, CreateDateTime, UserProfileId )
+                                        Title, Content, CreateDateTime, UserProfileId, FunkoPopId)
                                         OUTPUT INSERTED.ID
                                         VALUES (
-                                        @Title, @Content, @CreateDateTime, @UserProfileId )";
+                                        @Title, @Content, @CreateDateTime, @UserProfileId, @FunkoPopId )";
                     cmd.Parameters.AddWithValue("@Title", blogPost.Title);
+                    cmd.Parameters.AddWithValue("@FunkoPopId", blogPost.FunkoPopId == null ? DBNull.Value : blogPost.FunkoPopId);
                     cmd.Parameters.AddWithValue("@Content", blogPost.Content);
                     cmd.Parameters.AddWithValue("@CreateDateTime", blogPost.CreateDateTime);
                     cmd.Parameters.AddWithValue("@UserProfileId", blogPost.UserProfileId);
@@ -165,15 +166,14 @@ namespace FunkoPopBlog.Repositories
                                         UPDATE BlogPost
                                         SET 
                                         Title = @title,
-                                        Content = @content
+                                        Content = @content,
+                                        FunkoPopId = @funkoPopId
                                         WHERE Id = @id";
 
                     cmd.Parameters.AddWithValue("@title", blogPost.Title);
                     cmd.Parameters.AddWithValue("@content", blogPost.Content);
+                    cmd.Parameters.AddWithValue("@funkoPopId", blogPost.FunkoPopId);
                     cmd.Parameters.AddWithValue("@id", blogPost.Id);
-
-
-
 
                     cmd.ExecuteNonQuery();
                 }
@@ -189,7 +189,7 @@ namespace FunkoPopBlog.Repositories
                 {
                     cmd.CommandText = @"
                                         SELECT bp.Id, bp.Title, bp.Content,
-                                        bp.CreateDateTime, bp.UserProfileId,
+                                        bp.CreateDateTime, bp.UserProfileId, bp.FunkoPopId,
                                         c.[Name] AS CategoryName,
                                         u.FirstName, u.LastName, u.DisplayName, u.FirebaseUserId, 
                                         u.Email, u.Image
@@ -223,6 +223,7 @@ namespace FunkoPopBlog.Repositories
                 Content = reader.GetString(reader.GetOrdinal("Content")),
                 CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
                 UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
+                FunkoPopId = reader.GetInt32(reader.GetOrdinal("FunkoPopId")),
                 UserProfile = new UserProfile()
                 {
                     Id = reader.GetInt32(reader.GetOrdinal("UserProfileId")),

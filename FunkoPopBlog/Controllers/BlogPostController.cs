@@ -52,6 +52,7 @@ namespace FunkoPopBlog.Controllers
         public IActionResult AddBlogPost(BlogPost blogPost)
         {
             var currentUserProfile = GetCurrentUserProfile();
+            blogPost.FunkoPopId = blogPost.FunkoPopId;
             blogPost.UserProfileId = currentUserProfile.Id;
             blogPost.CreateDateTime = DateTime.Now;
             _blogPostRepo.AddBlogPost(blogPost);

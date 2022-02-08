@@ -15,6 +15,7 @@ export default function BlogPost({ blogPost }) {
                 </CardHeader>
                 <CardBody>
                     Author: {blogPost.userProfile.displayName} <br></br>
+                    Subject: {blogPost.favPop}
                 </CardBody>
                 <Button onClick={() => history.push(`/blogPost/details/${blogPost.id}`)}>Read This Blog Post</Button>
             </Card>

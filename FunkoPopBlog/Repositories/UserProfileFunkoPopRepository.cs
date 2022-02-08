@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using FunkoPopBlog.Models;
 using FunkoPopBlog.Utils;
 using System;
-
+using Microsoft.Data.SqlClient;
 
 namespace FunkoPopBlog.Repositories
 {
@@ -50,7 +50,7 @@ namespace FunkoPopBlog.Repositories
         }
 
 
-        public List<FunkoPop> GetMyCollection( int userProfileId)
+        public List<FunkoPop> GetMyCollection(int userProfileId)
         {
             using (var conn = Connection)
             {
@@ -69,7 +69,7 @@ namespace FunkoPopBlog.Repositories
                     var reader = cmd.ExecuteReader();
 
                     List<FunkoPop> funkoPops = new List<FunkoPop>();
-                                      
+
                     {
 
                         while (reader.Read())
@@ -117,16 +117,32 @@ namespace FunkoPopBlog.Repositories
 
         }
 
-       
 
-        public void GetCollection(int id)
+        public void DeleteFavorite(int id, int userProfileId)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        DELETE FROM UserProfileFunkoPop 
+                                        
+                                        WHERE UserProfileId = @userProfileId AND FunkoPopId = @id";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@userProfileId", userProfileId);
+                    
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
-        public void GetFunkoPopById(int id)
-        {
-            throw new NotImplementedException();
-        }
+
+
+
+
+
     }
 }
