@@ -8,7 +8,6 @@ const DeleteComment = () => {
     const { id } = useParams();
 
     const history = useHistory();
-    console.log(id);
 
     const handleConfirm = (event) => {
         event.preventDefault();

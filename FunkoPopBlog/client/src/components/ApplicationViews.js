@@ -65,8 +65,6 @@ export default function ApplicationViews({ isLoggedIn }) {
                 </Route>
 
 
-
-
                 <Route exact path="/Login">
                     {isLoggedIn ? <Redirect to="/" /> : <Login />}
                 </Route>
