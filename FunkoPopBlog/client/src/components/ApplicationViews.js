@@ -13,6 +13,7 @@ import { BlogPostDetails } from "./BlogPosts/BlogPostDetails";
 import DeleteBlogPostForm from "./BlogPosts/DeleteBlogPost";
 import AddComment from "./Comments/AddComment";
 import { CommentsList } from "./Comments/CommentsList";
+import EditComment from "./Comments/EditComment";
 
 
 export default function ApplicationViews({ isLoggedIn }) {
@@ -57,10 +58,10 @@ export default function ApplicationViews({ isLoggedIn }) {
                 </Route>
                 {/* <Route path="/deleteComment/:id">
                     <DeleteComment />
-                </Route>
+                </Route> */}
                 <Route path="/editComment/:id">
                     <EditComment />
-                </Route> */}
+                </Route>
 
 
 

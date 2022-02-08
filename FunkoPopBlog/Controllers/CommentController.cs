@@ -52,8 +52,18 @@ namespace FunkoPopBlog.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, Comment comment)
         {
-            throw new System.NotImplementedException();
+            if (id != comment.Id)
+            {
+                return BadRequest();
+            }
+
+            comment.UserProfileId = GetCurrentUserProfile().Id;
+
+            _commentRepository.UpdateComment(comment);
+            return NoContent();
         }
+
+
 
         // DELETE api/<CommentController>/5
         [HttpDelete("{id}")]
@@ -61,6 +71,8 @@ namespace FunkoPopBlog.Controllers
         {
             throw new System.NotImplementedException();
         }
+
+
 
         private UserProfile GetCurrentUserProfile()
         {
