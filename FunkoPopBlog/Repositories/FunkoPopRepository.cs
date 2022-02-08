@@ -93,6 +93,11 @@ namespace FunkoPopBlog.Repositories
             }
         }
 
+        public FunkoPop GetFunkoPopById(string funkoPopId)
+        {
+            throw new NotImplementedException();
+        }
+
         private FunkoPop NewPopFromReader(SqlDataReader reader)
         {
             return new FunkoPop()

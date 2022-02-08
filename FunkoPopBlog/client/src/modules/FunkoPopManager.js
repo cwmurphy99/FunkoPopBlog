@@ -1,6 +1,7 @@
 import { getToken } from "./authManager";
 
 const apiUrl = "/api/FunkoPop"
+const _apiUrl = "/api/UserProfileFunkoPop"
 
 export const getFunkoPops = () => {
     return getToken().then(token => {
@@ -36,3 +37,25 @@ export const getFunkoPopsById = (id) => {
         }).then(res => res.json())
     })
 }
+
+
+
+export const addMyFavorite = (id) => {
+    return getToken().then(token => {
+        return fetch(`${_apiUrl}/${id}`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(id)
+        }).then((res) => {
+            if (res.ok) {
+                return res;
+            }
+            else {
+                throw new Error("An unknown error occurred while trying to add favorite.");
+            }
+        });
+    });
+};
