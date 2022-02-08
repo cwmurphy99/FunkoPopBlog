@@ -24,6 +24,14 @@ namespace FunkoPopBlog.Controllers
             _funkoPopRepository = funkoPopRepo;
         }
 
+        [HttpGet("MyCollection")]
+        public IActionResult MyCollection()
+        {
+            var userId = GetCurrentUserProfile().Id;
+            var myCollection = _userProfileFunkoPopRepository.GetMyCollection(userId);
+
+            return Ok(myCollection);
+        }
 
         [HttpPost("{id}")]
         public IActionResult Add(int id)

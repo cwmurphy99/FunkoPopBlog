@@ -50,6 +50,50 @@ namespace FunkoPopBlog.Repositories
         }
 
 
+        public List<FunkoPop> GetMyCollection( int userProfileId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        SELECT fp.* 
+                                        FROM UserProfile up
+                                        JOIN UserProfileFunkoPop as upfp ON upfp.UserProfileId = up.Id
+                                        JOIN FunkoPop fp ON fp.Id = upfp.FunkoPopId
+                                        WHERE up.Id = @id";
+
+                    cmd.Parameters.AddWithValue("@id", userProfileId);
+
+                    var reader = cmd.ExecuteReader();
+
+                    List<FunkoPop> funkoPops = new List<FunkoPop>();
+                                      
+                    {
+
+                        while (reader.Read())
+                        {
+                            funkoPops.Add(new FunkoPop
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Title = reader.GetString(reader.GetOrdinal("Title")),
+                                Handle = reader.GetString(reader.GetOrdinal("Handle")),
+                                Image = DbUtils.GetString(reader, "Image"),
+                            });
+
+                        }
+
+                        reader.Close();
+
+                        return funkoPops;
+                    }
+                }
+            }
+        }
+
+
+
         public void AddFavorite(UserProfileFunkoPop userProfileFunkoPop)
         {
             using (var conn = Connection)

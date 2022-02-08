@@ -59,3 +59,25 @@ export const addMyFavorite = (id) => {
         });
     });
 };
+
+
+
+export const getMyCollection = () => {
+    return getToken().then(token => {
+        return fetch(`${_apiUrl}/MyCollection`, {
+            method: "GET",
+            headers: {
+                pragma: "no-cache",
+                "cache-control": "no-cache",
+                "cache-control": "no-store",
+                Authorization: `Bearer ${token}`
+            }
+        }).then(resp => {
+            if (resp.ok) {
+                return resp.json();
+            } else {
+                throw new Error("An unknown error occurred while trying to get Posts.");
+            }
+        })
+    })
+}

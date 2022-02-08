@@ -15,6 +15,7 @@ import AddComment from "./Comments/AddComment";
 import { CommentsList } from "./Comments/CommentsList";
 import EditComment from "./Comments/EditComment";
 import DeleteComment from "./Comments/DeleteComment";
+import FunkoPopCollection from "./FunkoPops/FunkoPopCollection";
 
 
 export default function ApplicationViews({ isLoggedIn }) {
@@ -64,6 +65,9 @@ export default function ApplicationViews({ isLoggedIn }) {
                     <EditComment />
                 </Route>
 
+                <Route path="/MyCollection">
+                    <FunkoPopCollection />
+                </Route>
 
                 <Route exact path="/Login">
                     {isLoggedIn ? <Redirect to="/" /> : <Login />}

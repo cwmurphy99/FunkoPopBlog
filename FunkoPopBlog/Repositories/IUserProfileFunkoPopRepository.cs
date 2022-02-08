@@ -1,4 +1,5 @@
 ﻿using FunkoPopBlog.Models;
+using System.Collections.Generic;
 
 namespace FunkoPopBlog.Repositories
 {
@@ -8,5 +9,6 @@ namespace FunkoPopBlog.Repositories
         UserProfile GetByFirebaseUserId(string firebaseUserId);
         void GetCollection(int id);
         void GetFunkoPopById(int id);
+        List<FunkoPop> GetMyCollection(int userProfileId);
     }
 }
