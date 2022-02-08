@@ -50,6 +50,49 @@ namespace FunkoPopBlog.Repositories
             }
         }
 
+
+
+
+        public Comment GetCommentById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                               SELECT Id, Content, CreateDateTime, BlogPostId, UserProfileId
+                               FROM Comment
+                               WHERE Id = @id";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+                    Comment comment = null;
+
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        if (comment == null)
+                        {
+                            comment = new Comment()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                BlogPostId = reader.GetInt32(reader.GetOrdinal("BlogPostId")),
+                                Content = reader.GetString(reader.GetOrdinal("Content")),
+                                CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
+                                UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
+                            };
+                        }
+                    }
+                    reader.Close();
+                    return comment;
+                }
+            }
+        }
+
+
+
+
+
         public void AddComment(Comment comment)
         {
             using (var conn = Connection)
@@ -72,15 +115,41 @@ namespace FunkoPopBlog.Repositories
             }
         }
 
+
+
+        
+        public void UpdateComment(Comment comment)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+
+                    cmd.CommandText = @"
+                                        UPDATE Comment
+                                        SET Content = @content
+                                        WHERE id = @id";
+
+                    cmd.Parameters.AddWithValue("@content", comment.Content);
+                    cmd.Parameters.AddWithValue("@id", comment.Id);
+                    cmd.Parameters.AddWithValue("@UserProfileId", comment.UserProfileId);
+
+                    cmd.ExecuteNonQuery();
+
+
+                }
+            }
+        }
+
+
+
+
         public void DeleteComment(int commentId)
         {
             throw new System.NotImplementedException();
         }
 
-        public void UpdateComment(Comment comment)
-        {
-            throw new System.NotImplementedException();
-        }
 
         private Comment NewCommentFromReader(SqlDataReader reader)
         {
@@ -111,11 +180,7 @@ namespace FunkoPopBlog.Repositories
             };
         }
 
-
-
-
-
-
+        
     }
 }
 

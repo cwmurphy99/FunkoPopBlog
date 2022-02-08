@@ -9,5 +9,7 @@ namespace FunkoPopBlog.Repositories
         void DeleteComment(int commentId);
         List<Comment> GetPostComments(int blogPostId);
         void UpdateComment(Comment comment);
+        Comment GetCommentById(int id);
+
     }
 }

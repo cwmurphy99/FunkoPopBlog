@@ -39,3 +39,28 @@ export const addComment = (comment) => {
     });
 };
 
+export const getCommentById = (commentId) => {
+    return getToken().then(token => {
+        return fetch(`${apiUrl}/${commentId}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+        }).then((resp) => resp.json());
+    })
+};
+
+export const updateComment = (comment) => {
+    return getToken().then(token => {
+
+        return fetch(`${apiUrl}/${comment.id}`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(comment),
+        });
+    })
+}
