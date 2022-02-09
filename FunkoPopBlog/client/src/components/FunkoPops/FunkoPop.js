@@ -11,7 +11,7 @@ export default function FunkoPop({ funkoPop }) {
 
     const handleAddFavorite = (event) => {
         event.preventDefault();
-        addMyFavorite(funkoPop.id).then(alert("Added to Collection"));
+        addMyFavorite(funkoPop.id);
     };
 
 
@@ -27,8 +27,8 @@ export default function FunkoPop({ funkoPop }) {
                         <img src={funkoPop.image} style={{ height: "300px", width: "250px" }}></img>
                     </CardBody>
                 </div>
-                <Button onClick={() => history.push(`/Products/Details/${funkoPop.id}`)}> Pop! Details </Button>
-                <div>
+                <div className="funkoPopButton">
+                    <Button onClick={() => history.push(`/Products/Details/${funkoPop.id}`)}> Pop! Details </Button>
                     <Button onClick={handleAddFavorite}> Add to Collection </Button>
                 </div>
             </Card>

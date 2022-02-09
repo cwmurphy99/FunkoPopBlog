@@ -18,7 +18,7 @@ export default function FunkoPopFavorites({ funkoPop, setFunkoPops }) {
 
             getMyCollection().then((pops) => {
                 setFunkoPops(pops)
-                alert("Removed from Collection")
+
             });
         });
     };

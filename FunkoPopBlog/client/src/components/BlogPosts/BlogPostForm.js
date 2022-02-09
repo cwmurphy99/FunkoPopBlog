@@ -31,6 +31,8 @@ const BlogPostForm = () => {
             selectedVal = parseInt(selectedVal)
         }
         newBlogPost[event.target.id] = selectedVal
+
+        console.log('blogPost: ', blogPost.funkoPopId);
         setBlogPost(newBlogPost)
     }
 
@@ -62,7 +64,17 @@ const BlogPostForm = () => {
     return (
         <Form className="form-group">
 
-            <h2 className="postForm__title">New Blog Post</h2>
+            <h2 className="postForm__title">New Blog Post</h2><br></br>
+
+            <FormGroup className="favPop">
+                <Label htmlFor="favPop">FunkoPop: </Label><br></br>
+                <select id="funkoPopId" onChange={handleControlledInputChange}>
+                    <option key={0} value="0">Select Your Favorite</option>
+                    {favPops.map(favPop => <option key={favPop.id} value={favPop.id}>{favPop.title}</option>)}
+                </select>
+            </FormGroup>
+
+
             <FormGroup className="form-group">
                 <Label htmlFor="name">Title:</Label>
                 <Input type="text" id="title" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Post Title" value={blogPost.title} />
@@ -73,13 +85,7 @@ const BlogPostForm = () => {
             </FormGroup>
 
 
-            <FormGroup className="favPop">
-                <Label htmlFor="favPop">FunkoPop: </Label><br></br>
-                <select id="funkoPopId" onChange={handleControlledInputChange}>
-                    <option key={0} value="0">Select Your Favorite</option>
-                    {favPops.map(favPop => <option key={favPop.id} value={favPop.id}>{favPop.title}</option>)}
-                </select>
-            </FormGroup>
+
 
 
             <FormGroup>

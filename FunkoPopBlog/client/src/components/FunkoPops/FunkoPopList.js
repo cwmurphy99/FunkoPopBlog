@@ -15,7 +15,9 @@ export default function FunkoPopList() {
     return (
         <section className="funkoPopList">
             <h1>Welcome to the world of Funko!</h1>
-            {funkoPops.map(p => <FunkoPop key={p.id} funkoPop={p} />)}
+            <div className="funkoPopListContainer">
+                {funkoPops.map(p => <FunkoPop key={p.id} funkoPop={p} />)}
+            </div>
         </section>
     )
 }

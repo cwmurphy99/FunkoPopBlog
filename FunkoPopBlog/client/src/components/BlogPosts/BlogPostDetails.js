@@ -6,11 +6,13 @@ import { Card, CardHeader, CardBody, CardFooter } from "reactstrap";
 
 export const BlogPostDetails = () => {
     const [blogPost, setBlogPost] = useState();
+
     const { id } = useParams();
     const history = useHistory();
 
     useEffect(() => {
-        getBlogPostById(id).then(setBlogPost);
+        getBlogPostById(id).then
+            (setBlogPost);
     }, [id])
 
     if (!blogPost) {
@@ -18,17 +20,17 @@ export const BlogPostDetails = () => {
     }
 
 
-
     return (
         <div className="blogPostDetailsCard">
             <h2>Blog Details</h2>
             < Card >
                 <CardHeader>
-                    <strong>Title: {blogPost.title}</strong><br></br><br></br>
+                    <strong>Title: </strong>{blogPost.title}<br></br>
+                    <strong>FunkoPop! </strong> {blogPost.funkoPopTitle}<br></br>
                 </CardHeader>
                 <CardBody>
-                    {blogPost.content}<br></br>
-                    FunkoPop! {blogPost.favPop}
+                    {blogPost.content}<br></br><br></br>
+                    <img src={blogPost.funkoPopImage} style={{ height: "300px", width: "250px" }}></img><br></br>
                 </CardBody>
                 <CardFooter>
                     Published Date: {blogPost.createDateTime.slice(0, 10)}
