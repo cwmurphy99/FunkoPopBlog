@@ -15,8 +15,10 @@ export default function FunkoPopCollection() {
 
     return (
         <section className="funkoPopList">
-            <h1>Welcome to the world of Funko!</h1>
-            {funkoPops.map(p => <FunkoPopFavorites key={p.id} funkoPop={p} setFunkoPops={setFunkoPops} />)}
+            <h1>Welcome to Your Favorites!</h1>
+            <div className="funkoPopListContainer">
+                {funkoPops.map(p => <FunkoPopFavorites key={p.id} funkoPop={p} setFunkoPops={setFunkoPops} />)}
+            </div>
         </section>
     )
 }

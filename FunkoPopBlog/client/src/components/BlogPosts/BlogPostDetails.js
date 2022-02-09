@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { getBlogPostById } from "../../modules/blogPostManager";
-import { Card, CardHeader, CardBody, CardFooter } from "reactstrap";
+import { Card, CardHeader, CardBody, CardFooter, Button } from "reactstrap";
 
 
 export const BlogPostDetails = () => {
@@ -37,10 +37,10 @@ export const BlogPostDetails = () => {
                     <br>
                     </br>
                     Author: {blogPost.userProfile.displayName}<br></br><br></br>
-                    <button className="button" type="button" onClick={() => history.push(`/BlogPost/${blogPost.id}/edit`)}>Edit</button>
-                    <button className="button" type="button" onClick={() => { history.push(`/BlogPost/delete/${blogPost.id}`) }}>Delete</button><br></br><br></br>
-                    <button className="button" onClick={() => history.push(`/comments/${blogPost.id}`)}>View Comments</button>
-                    <button className="button" onClick={() => history.push(`/BlogPost`)}>Return to Forum</button>
+                    <Button className="button" type="button" onClick={() => history.push(`/BlogPost/${blogPost.id}/edit`)}>Edit</Button>
+                    <Button className="button" type="button" onClick={() => { history.push(`/BlogPost/delete/${blogPost.id}`) }}>Delete</Button><br></br><br></br>
+                    <Button className="button" onClick={() => history.push(`/comments/${blogPost.id}`)}>View Comments</Button>
+                    <Button className="button" onClick={() => history.push(`/BlogPost`)}>Return to Forum</Button>
                 </CardFooter>
             </Card>
         </div >

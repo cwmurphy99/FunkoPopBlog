@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { getCommentById, updateComment } from "../../modules/commentManager";
+import { Button } from "reactstrap";
 
 export const EditComment = () => {
     const history = useHistory();
@@ -56,15 +57,15 @@ export const EditComment = () => {
                     />
                 </div>
             </fieldset>
-            <button className="btn-add-save" onClick={handleClickSaveComment}>
+            <Button className="btn-add-save" onClick={handleClickSaveComment}>
                 Submit
-            </button>
-            <button
+            </Button>
+            <Button
                 className="btn-add-edit"
                 onClick={handleGoBack}
             >
                 Cancel
-            </button>
+            </Button>
         </form>
     );
 }

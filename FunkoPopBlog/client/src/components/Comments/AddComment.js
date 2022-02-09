@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { addComment } from "../../modules/commentManager";
 import { useParams } from "react-router-dom";
+import { Button } from "reactstrap";
 import './Comment.css';
 
 const AddComment = () => {
@@ -45,15 +46,15 @@ const AddComment = () => {
                     />
                 </div>
             </fieldset>
-            <button className="btn-add-save" onClick={handleSubmit}>
+            <Button className="btn-add-save" onClick={handleSubmit}>
                 Submit
-            </button>
-            <button
+            </Button>
+            <Button
                 className="btn-add-cancel"
                 onClick={() => history.push(`/blogPost/details/${id}`)}
             >
                 Cancel
-            </button>
+            </Button>
         </form>
     );
 };

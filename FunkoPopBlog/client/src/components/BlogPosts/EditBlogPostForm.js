@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getBlogPostById, updateBlogPost } from "../../modules/blogPostManager";
 import { useHistory, useParams } from "react-router";
+import { Button } from "reactstrap";
 
 
 export const EditBlogPostForm = () => {
@@ -68,11 +69,11 @@ export const EditBlogPostForm = () => {
                             id="content"
                             value={blogPost.content}
                         />
-                        <button
+                        <Button
                             type="button" disabled={isLoading}
                             onClick={updateExistingPost}
                             className="button"
-                        >Submit</button>
+                        >Submit</Button>
                     </div>
                 </fieldset>
             </form>

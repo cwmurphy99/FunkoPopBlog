@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import Hello from "./Hello";
-import { UserProfiles } from "./userProfile/UserProfiles";
+import { UserProfiles } from "./userProfile/UserProfile";
 import FunkoPopList from "./FunkoPops/FunkoPopList";
 import { FunkoPopDetails } from "./FunkoPops/FunkoPopDetails";
 import BlogPostList from "./BlogPosts/BlogPostList";
