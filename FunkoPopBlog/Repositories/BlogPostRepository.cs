@@ -20,13 +20,12 @@ namespace FunkoPopBlog.Repositories
                 {
                     cmd.CommandText = @"
                                         SELECT bp.*,
-                                        u.FirstName, 
-                                        u.LastName, u.DisplayName, 
-                                        u.Email
+                                        u.FirstName, u.LastName, u.DisplayName, u.Email,
+                                        fp.Title as FunkoPopTitle, fp.Image as FunkoPopImage
                                         FROM BlogPost bp
-                                        LEFT JOIN 
-                                        UserProfile u ON bp.UserProfileId = u.id
-                                        ORDER BY bp.CreateDateTime";
+                                        LEFT JOIN UserProfile u ON bp.UserProfileId = u.id
+                                        LEFT JOIN FunkoPop fp ON bp.FunkoPopId = fp.Id
+                                        ORDER BY bp.CreateDateTime DESC";
 
                     var reader = cmd.ExecuteReader();
 
@@ -52,12 +51,12 @@ namespace FunkoPopBlog.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                        SELECT bp.Id, bp.Title, bp.Content,
-                                        bp.CreateDateTime, bp.UserProfileId,
-                                        u.FirstName, u.LastName, u.DisplayName, 
-                                        u.Email
+                                        SELECT bp.*,
+                                        u.FirstName, u.LastName, u.DisplayName, u.Email,
+                                        fp.Title as FunkoPopTitle, fp.Image as FunkoPopImage
                                         FROM BlogPost bp
                                         LEFT JOIN UserProfile u ON bp.UserProfileId = u.id
+                                        LEFT JOIN FunkoPop fp ON bp.FunkoPopId = fp.Id
                                         WHERE bp.CreateDateTime < SYSDATETIME() AND bp.id = @id";
 
                     cmd.Parameters.AddWithValue("@id", id);
@@ -86,7 +85,7 @@ namespace FunkoPopBlog.Repositories
                 {
                     cmd.CommandText = @"
                                         SELECT bp.Id, bp.Title, bp.Content,
-                                        bp.CreateDateTime, bp.CreateDateTime,
+                                        bp.CreateDateTime, bp.CreateDateTime, bp.FunkoPopId,
                                         bp.UserProfileId,
                                         u.FirstName, u.LastName, u.DisplayName, 
                                         u.Email, u.Image
@@ -121,11 +120,12 @@ namespace FunkoPopBlog.Repositories
                 {
                     cmd.CommandText = @"
                                         INSERT INTO BlogPost (
-                                        Title, Content, CreateDateTime, UserProfileId )
+                                        Title, Content, CreateDateTime, UserProfileId, FunkoPopId)
                                         OUTPUT INSERTED.ID
                                         VALUES (
-                                        @Title, @Content, @CreateDateTime, @UserProfileId )";
+                                        @Title, @Content, @CreateDateTime, @UserProfileId, @FunkoPopId )";
                     cmd.Parameters.AddWithValue("@Title", blogPost.Title);
+                    cmd.Parameters.AddWithValue("@FunkoPopId", blogPost.FunkoPopId == null ? DBNull.Value : blogPost.FunkoPopId);
                     cmd.Parameters.AddWithValue("@Content", blogPost.Content);
                     cmd.Parameters.AddWithValue("@CreateDateTime", blogPost.CreateDateTime);
                     cmd.Parameters.AddWithValue("@UserProfileId", blogPost.UserProfileId);
@@ -165,15 +165,14 @@ namespace FunkoPopBlog.Repositories
                                         UPDATE BlogPost
                                         SET 
                                         Title = @title,
-                                        Content = @content
+                                        Content = @content,
+                                        FunkoPopId = @funkoPopId
                                         WHERE Id = @id";
 
                     cmd.Parameters.AddWithValue("@title", blogPost.Title);
                     cmd.Parameters.AddWithValue("@content", blogPost.Content);
+                    cmd.Parameters.AddWithValue("@FunkoPopId", blogPost.FunkoPopId == null ? DBNull.Value : blogPost.FunkoPopId);
                     cmd.Parameters.AddWithValue("@id", blogPost.Id);
-
-
-
 
                     cmd.ExecuteNonQuery();
                 }
@@ -189,7 +188,7 @@ namespace FunkoPopBlog.Repositories
                 {
                     cmd.CommandText = @"
                                         SELECT bp.Id, bp.Title, bp.Content,
-                                        bp.CreateDateTime, bp.UserProfileId,
+                                        bp.CreateDateTime, bp.UserProfileId, bp.FunkoPopId,
                                         c.[Name] AS CategoryName,
                                         u.FirstName, u.LastName, u.DisplayName, u.FirebaseUserId, 
                                         u.Email, u.Image
@@ -223,6 +222,9 @@ namespace FunkoPopBlog.Repositories
                 Content = reader.GetString(reader.GetOrdinal("Content")),
                 CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
                 UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
+                FunkoPopId = reader.GetInt32(reader.GetOrdinal("FunkoPopId")),
+                FunkoPopImage = reader.GetString(reader.GetOrdinal("FunkoPopImage")),
+                FunkoPopTitle = reader.GetString(reader.GetOrdinal("FunkoPopTitle")),
                 UserProfile = new UserProfile()
                 {
                     Id = reader.GetInt32(reader.GetOrdinal("UserProfileId")),

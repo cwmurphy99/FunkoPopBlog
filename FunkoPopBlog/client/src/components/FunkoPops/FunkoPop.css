@@ -12,10 +12,29 @@
     width: 100%;
 }
 
+h1 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
 .funkoDetailsCard {
     display: flex;
     flex-direction: column;
     width: 400px;
     padding-bottom: 10px;
     align-items: center;
+}
+
+.funkoPopListContainer{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.funkoPopButton {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 5px;
+    justify-content: space-between;
+    padding: 5px;
 }
