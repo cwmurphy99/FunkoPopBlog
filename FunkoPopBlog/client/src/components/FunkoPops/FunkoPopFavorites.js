@@ -34,7 +34,7 @@ export default function FunkoPopFavorites({ funkoPop, setFunkoPops }) {
                         <img src={funkoPop.image} style={{ height: "300px", width: "250px" }}></img>
                     </CardBody>
                 </div>
-                <div className="funkoPopListContainer">
+                <div className="funkoPopButton">
                     <Button onClick={() => history.push(`/Products/Details/${funkoPop.id}`)}> Pop! Details </Button>
                     <Button onClick={handleRemoveFavorite}> Remove from Collection </Button>
                 </div>

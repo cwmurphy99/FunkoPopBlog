@@ -50,24 +50,25 @@ export default function ApplicationViews({ isLoggedIn }) {
                     {isLoggedIn ? <EditBlogPostForm /> : <Redirect to="/login" />}
                 </Route>
                 <Route path="/BlogPost/Delete/:blogPostId(\d+)">
-                    <DeleteBlogPostForm />
+                    {isLoggedIn ? <DeleteBlogPostForm /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/Comments/add/:id">
-                    <AddComment />
+                    {isLoggedIn ? <AddComment /> : <Redirect to="/login" />}
                 </Route>
                 <Route path="/Comments/:id">
-                    <CommentsList />
+                    {isLoggedIn ? <CommentsList /> : <Redirect to="/login" />}
                 </Route>
                 <Route path="/deleteComment/:id">
-                    <DeleteComment />
+                    {isLoggedIn ? <DeleteComment /> : <Redirect to="/login" />}
+
                 </Route>
                 <Route path="/editComment/:id">
-                    <EditComment />
+                    {isLoggedIn ? <EditComment /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/MyCollection">
-                    <FunkoPopCollection />
+                    {isLoggedIn ? <FunkoPopCollection /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route exact path="/Login">

@@ -18,15 +18,8 @@ h1 {
     text-align: center;
 }
 
-.funkoDetailsCard {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    padding-bottom: 10px;
-    align-items: center;
-}
 
-.funkoPopListContainer{
+.funkoPopContainer{
     display: flex;
     flex-flow: row wrap;
 }
@@ -39,10 +32,21 @@ h1 {
     padding: 5px;
 }
 
-.detailsButtonContainer {
+.funkoImageSrc {
     display: flex;
-    flex-flow: row nowrap;
-    gap: 5px;
-    justify-content: space-between;
-    padding: 5px;
+    justify-content: center;
+    width: auto;
+    max-width: 300px;
+    height: auto;
+    max-height: 300px;
+}
+
+
+
+.funkoPopLogin{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    padding: auto;
+    max-width: 600px;
 }

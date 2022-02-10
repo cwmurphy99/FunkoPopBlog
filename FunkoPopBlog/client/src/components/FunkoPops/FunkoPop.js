@@ -2,7 +2,6 @@ import React from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Button, Card, CardBody, CardHeader } from "reactstrap";
 import { addMyFavorite } from "../../modules/FunkoPopManager";
-import { removeMyFavorite } from "../../modules/FunkoPopManager";
 import "./FunkoPop.css";
 
 export default function FunkoPop({ funkoPop }) {
@@ -14,8 +13,6 @@ export default function FunkoPop({ funkoPop }) {
         addMyFavorite(funkoPop.id);
     };
 
-
-
     return (
         <div className="funkoCard">
             <Card>
@@ -24,12 +21,12 @@ export default function FunkoPop({ funkoPop }) {
                 </CardHeader>
                 <div className="funkoImage">
                     <CardBody>
-                        <img src={funkoPop.image} style={{ height: "300px", width: "250px" }}></img>
+                        <img className="funkoImageSrc" src={funkoPop.image} ></img>
                     </CardBody>
                 </div>
                 <div className="funkoPopButton">
                     <Button onClick={() => history.push(`/Products/Details/${funkoPop.id}`)}> Pop! Details </Button>
-                    <Button onClick={handleAddFavorite}> Add to Collection </Button>
+                    <Button onClick={handleAddFavorite} > Add to Collection </Button>
                 </div>
             </Card>
         </div>
