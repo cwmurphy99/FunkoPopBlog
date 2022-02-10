@@ -26,6 +26,7 @@ namespace FunkoPopBlog.Models
         public int? FunkoPopId { get; set; }
         public string FunkoPopImage { get; set; }
         public string FunkoPopTitle { get; set; }
+        
 
     }
 }

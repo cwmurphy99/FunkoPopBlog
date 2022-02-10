@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody } from "reactstrap";
+import { Card, CardBody, Button } from "reactstrap";
 import { useHistory, useParams } from "react-router";
 import { deleteBlogPost } from "../../modules/blogPostManager";
 
@@ -24,8 +24,8 @@ const DeleteBlogPostForm = ({ }) => {
                     <br></br>
                     <i>This process CANNOT be reversed</i>
                     <br></br><br></br>
-                    <button className="button" type="button" onClick={() => { history.push("/BlogPost") }}> No </button>
-                    <button className="button" type="button" onClick={handleDeleteBlogPost}> Yes </button>
+                    <Button className="button" type="button" onClick={() => { history.push("/BlogPost") }}> No </Button>
+                    <Button className="button" type="button" onClick={handleDeleteBlogPost}> Yes </Button>
                 </p>
             </CardBody>
         </Card>

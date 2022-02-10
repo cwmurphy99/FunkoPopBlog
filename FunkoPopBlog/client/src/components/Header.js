@@ -1,13 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
 import { NavLink as RRNavLink } from "react-router-dom";
-import {
-    Navbar,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink
-} from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import { logout, _getUserData } from '../modules/authManager';
 
 
@@ -49,11 +43,11 @@ export default function Header({ isLoggedIn }) {
                 </Nav>
 
                 <Nav navbar>
-                    {isLoggedIn &&
+                    {/* {isLoggedIn &&
                         <NavItem>
                             <NavLink tag={RRNavLink} to="/category">EventualSearchBar</NavLink>
                         </NavItem>
-                    }
+                    } */}
                     {isLoggedIn &&
                         <NavItem>
                             <NavLink tag={RRNavLink} to="/MyProfile">My Profile</NavLink>
