@@ -17,7 +17,9 @@ export default function FunkoPop({ funkoPop }) {
         <div className="funkoCard">
             <Card>
                 <CardHeader>
-                    <strong> {funkoPop.title} </strong>
+                    <div className="funkoTitle">
+                        <strong> {funkoPop.title} </strong>
+                    </div>
                 </CardHeader>
                 <div className="funkoImage">
                     <CardBody>

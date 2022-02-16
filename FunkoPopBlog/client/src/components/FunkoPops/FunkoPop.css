@@ -17,11 +17,21 @@ h1 {
     padding-bottom: 20px;
     text-align: center;
 }
-
+.card-body {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
 
 .funkoPopContainer{
     display: flex;
     flex-flow: row wrap;
+}
+
+.funkoTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .funkoPopButton {

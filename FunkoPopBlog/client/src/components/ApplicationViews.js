@@ -42,6 +42,7 @@ export default function ApplicationViews({ isLoggedIn }) {
                 </Route>
                 <Route exact path="/BlogPost/details/:id">
                     {isLoggedIn ? <BlogPostDetails /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <CommentsList /> : <Redirect to="/login" />}
                 </Route>
                 <Route exact path="/BlogPost/Create">
                     {isLoggedIn ? <BlogPostForm /> : <Redirect to="/login" />}
