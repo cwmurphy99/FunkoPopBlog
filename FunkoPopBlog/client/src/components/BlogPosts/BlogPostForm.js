@@ -31,8 +31,6 @@ const BlogPostForm = () => {
             selectedVal = parseInt(selectedVal)
         }
         newBlogPost[event.target.id] = selectedVal
-
-        console.log('blogPost: ', blogPost.funkoPopId);
         setBlogPost(newBlogPost)
     }
 
@@ -62,41 +60,40 @@ const BlogPostForm = () => {
 
 
     return (
-        <Form className="form-group">
-
-            <h2 className="postForm__title">New Blog Post</h2><br></br>
-
-            <FormGroup className="favPop">
-                <Label htmlFor="favPop">FunkoPop: </Label><br></br>
-                <select id="funkoPopId" onChange={handleControlledInputChange}>
-                    <option key={0} value="0">Select Your Favorite</option>
-                    {favPops.map(favPop => <option key={favPop.id} value={favPop.id}>{favPop.title}</option>)}
-                </select>
-            </FormGroup>
-
-
-            <FormGroup className="form-group">
-                <Label htmlFor="name">Title:</Label>
-                <Input type="text" id="title" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Post Title" value={blogPost.title} />
-            </FormGroup>
-            <FormGroup className="form-group">
-                <Label htmlFor="name">Content:</Label>
-                <Input type="textarea" id="content" onChange={handleControlledInputChange} required className="form-control" placeholder="Content" value={blogPost.content} />
-            </FormGroup>
+        <div className="formBlogPost">
+            <Form className="formContainer">
+                <h2 className="postForm__title">New Blog Post</h2>
+                <div className="formBlogPostContainer">
+                    <FormGroup>
+                        <Label htmlFor="favPop"><strong>FunkoPop: </strong></Label><br></br>
+                        <select id="funkoPopId" onChange={handleControlledInputChange}>
+                            <option key={0} value="0">Select Your Favorite</option>
+                            {favPops.map(favPop => <option key={favPop.id} value={favPop.id}>{favPop.title}</option>)}
+                        </select>
+                    </FormGroup>
 
 
+                    <FormGroup>
+                        <Label htmlFor="name"><strong>Title: </strong></Label>
+                        <Input type="text" id="title" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Post Title" value={blogPost.title} />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label htmlFor="name"><strong>Content: </strong></Label>
+                        <Input type="textarea" id="content" onChange={handleControlledInputChange} required className="form-control" placeholder="Content" value={blogPost.content} />
+                    </FormGroup>
 
 
+                    <FormGroup>
+                        <Label htmlFor="publishDateTime"><strong>Blog Post Date: </strong></Label>
+                        <Input type="date" id="today" name="dateRequired" onChange={handleControlledInputChange} required readOnly value={today} />
+                    </FormGroup>
+                </div>
+                <div className="funkoPopButtonContainerBlogForm">
+                    <Button className="btn btn-primary" onClick={handleClickSavePost}>Save post</Button>
+                </div>
 
-            <FormGroup>
-                <Label htmlFor="publishDateTime">Blog Post Date</Label>
-                <Input type="date" id="today" name="dateRequired" onChange={handleControlledInputChange} required readOnly value={today} />
-            </FormGroup>
-            <Button className="btn btn-primary" onClick={handleClickSavePost}>Save post</Button>
-
-
-
-        </Form>
+            </Form>
+        </div>
     )
 };
 

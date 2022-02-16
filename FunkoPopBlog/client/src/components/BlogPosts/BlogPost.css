@@ -1,16 +1,164 @@
-.blogPostCard {
-    width: 500px;
-    padding-bottom: 10px;
-    padding-top: 10px;
+.funkoPopList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
-.button {
-    margin-right: 5px;
-}
-.button {
-    margin-right: 5px;
+h1 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
 }
 
-.blogPostList {
+.funkoPopButtonContainerBlog {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.paragraphText {
+    font-style: italic;
+}
+
+
+/* THIS SETS THE CARD FOR THE FORUM LIST VIEW */
+.funkoCardBlog {
+    display: flex;
+    flex-direction: column;
     width: auto;
+    width: 400px;
+    padding-bottom: 20px;
+    align-items: center;
+}
+
+/* THIS SETS THE TOP SECTION OF THE FUNKO POP CARD */
+/* THIS WILL BE THE TITLE HEADING AND THE TITLE OF THE BLOG POST*/
+.funkoCardTitleBlog {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.funkoCardTitleNameBlog {
+    display: flex;
+    justify-content: center;
+}
+
+/* THIS SETS THE FUNKO POP CARD IMAGE */
+.funkoImageSrcBlog {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    max-width: 300px;
+    height: auto;
+    max-height: 300px;
+}
+
+/* THIS SETS THE BOTTOM SECTION OF THE FUNKO POP CARD */
+/* THIS WILL BE THE AUTHOR HEADING, THE AUTHOR NAME, AND THE READ BLOG BUTTON */
+.funkoCardAuthorBlog {
+    display: flex;
+    justify-content: center;
+}
+.funkoCardAuthorNameBlog {
+    display: flex;
+    justify-content: center;
+}
+.funkoPopCardButtonBlog {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 5px;
+    justify-content: center;
+    padding: 5px;
+}
+
+
+
+/* BLOG DETAILS */
+/* THIS SETS THE ENTIRE PAGE TO BE CENTERED AND IN COLUMN FORM */
+.funkoBlogDetailsList {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+/* THIS SETS THE CARD FOR THE FORM DETAIL VIEW */
+.funkoCardBlogDetails {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    width: 1400px;
+    padding-bottom: 20px;
+    align-items: center;
+}
+
+/* THIS SETS THE TOP SECTION OF THE FUNKO POP CARD DETAILS*/
+/* THIS WILL BE THE TITLE HEADING AND THE TITLE OF THE BLOG POST*/
+.funkoCardTitleBlogDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.funkoCardNameBlogDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* THIS SETS THE FUNKO POP CARD IMAGE */
+.funkoImageSrcBlogDetails {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    max-width: 300px;
+    height: auto;
+    max-height: 300px;
+}
+
+/* THIS SETS THE BOTTOM SECTION OF THE FUNKO POP CARD */
+/* THIS WILL BE THE AUTHOR HEADING, THE AUTHOR NAME, AND THE READ BLOG BUTTON */
+.funkoCardAuthorBlogDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.funkoCardPublishBlogDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.funkoCardEditDeleteButtonContainerBlogDetails {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 5px;
+    justify-content: center;
+    padding: 5px;
+}
+.funkoCardViewReturnButtonContainerBlogDetails {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 5px;
+    justify-content: center;
+    padding: 5px;
+}
+
+
+
+
+.formBlogPost {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.formBlogPostContainer {
+    display: flex;
+    flex-direction: column;
+}
+#content {
+    height: 150px;
 }

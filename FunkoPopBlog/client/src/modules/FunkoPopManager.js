@@ -39,29 +39,6 @@ export const getFunkoPopsById = (id) => {
 }
 
 
-
-export const addMyFavorite = (id) => {
-    return getToken().then(token => {
-        return fetch(`${_apiUrl}/${id}`, {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(id)
-        }).then((res) => {
-            if (res.ok) {
-                return res;
-            }
-            else {
-                throw new Error("An unknown error occurred while trying to add favorite.");
-            }
-        });
-    });
-};
-
-
-
 export const getMyCollection = () => {
     return getToken().then(token => {
         return fetch(`${_apiUrl}/MyCollection`, {
@@ -82,6 +59,26 @@ export const getMyCollection = () => {
     })
 }
 
+
+export const addMyFavorite = (id) => {
+    return getToken().then(token => {
+        return fetch(`${_apiUrl}/${id}`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(id)
+        }).then((res) => {
+            if (res.ok) {
+                return res;
+            }
+            else {
+                throw new Error("An unknown error occurred while trying to add favorite.");
+            }
+        });
+    });
+};
 
 
 export const removeMyFavorite = (id) => {
